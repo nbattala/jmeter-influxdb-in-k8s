@@ -2,14 +2,15 @@
 
 jmeter_ns=$(kubectl get pods -A -l app=jmeter -o=jsonpath='{.items[].metadata.namespace}')
 
-while getopts t o
-do	case "$o" in
+while getopts "t" arg;
+do	case "$arg" in
 	t)	testfile="$OPTARG";;
-	[?])	print >&2 "Usage: $0 [-t <path to jmeter script>] [-<other jmeter test options>]"
+	[?])	echo "Usage: $0 [-t <path to jmeter script>] [-<other jmeter test options>]"
 		exit 1;;
 	esac
 done
-shift $OPTIND-1
+
+shift $((OPTIND-1))
 
 if [ ! -f "$testfile" ]
 then
