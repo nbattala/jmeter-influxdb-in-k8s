@@ -2,33 +2,36 @@
 
 jmeter_ns=$(kubectl get pods -A -l app=jmeter -o=jsonpath='{.items[].metadata.namespace}')
 
-while getopts "t:J:h" opt;
+while getopts "t:J:l:h" opt;
 do	case "$opt" in
 	t)	
-		testfile="$OPTARG"
+		testFile="$OPTARG"
 		;;
 	J)
-		echo "reading Jproperties"
+		echo "reading Jproperties - $OPTARG"
 		;;
-	?|h)	echo "Usage: $0 [-t <path to jmeter script>] [-J<property> ...]"
+	l)
+		echo "reading Log file paramater"
+		;;
+	?|h)	echo "Usage: $0 [-t <path to jmeter script>] [-J<property> ...]" 
 		exit 1;;
 	esac
 done
 
-if [ ! -f "$testfile" ]
+if [ ! -f "$testFile" ]
 then
     echo "ERROR: Jmeter Test script was not found in PATH. Please input the correct file path"
     exit
 fi
 
-test_name=$(basename "$jmx")
+testName=$(basename "$testFile")
 
-jmeter_pod=$(kubectl get po -n ${jmeter_ns} -l app=jmeter)
+jmeter_pod=$(kubectl get po -n ${jmeter_ns} -l app=jmeter -o=jsonpath='{.items[].metadata.name}')
 
 #copy the script to jmeter pod
-kubectl cp "$jmx" -n ${jmeter_ns} "${jmeter_pod}:/${test_name}
+kubectl cp "$testFile" -n ${jmeter_ns} "${jmeter_pod}:/${testName}"
 
 echo "starting jmeter load test"
 
-kubectl exec -it -n ${jmeter_ns} ${jmeter_pod} -- /bin/bash /load_test $@
+kubectl -n ${jmeter_ns} exec -it ${jmeter_pod} -- /bin/bash /load_test $@
 
