@@ -21,5 +21,7 @@ helm upgrade -n $namespace --install influxdb-rel \
   influxdata/influxdb
 
 #create a influxdb database
+#sleep a few seconds for the influxdb to be available
+sleep 10
 echo "creating jmeter database in influxdb-rel-0"
 kubectl -n $namespace exec -it influxdb-rel-0 -- influx -execute 'CREATE DATABASE jmeter'
