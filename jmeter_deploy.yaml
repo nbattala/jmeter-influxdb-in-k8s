@@ -1,22 +1,22 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jmeter-master
+  name: jmeter
   labels:
-    jmeter_mode: master
+    app: jmeter
 spec:
   replicas: 1
   selector:
     matchLabels:
-      jmeter_mode: master
+      app: jmeter
   template:
     metadata:
       labels:
-        jmeter_mode: master
+        app: jmeter
     spec:
       containers:
-      - name: jmmaster
-        image: kubernautslabs/jmeter_master:latest
+      - name: jmeter
+        image: nbattala/jmeter:latest
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]

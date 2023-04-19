@@ -1,0 +1,26 @@
+service:
+  type: ClusterIP
+#ingress:
+#  enabled: true
+#  tls: true
+#  secretName: influxdb-ingress-certificate
+#  hostname: ingress-host
+#  className: nginx
+#  annotations:
+#    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+#    nginx.ingress.kubernetes.io/affinity: cookie
+#    nginx.ingress.kubernetes.io/affinity-mode: persistent
+#    nginx.ingress.kubernetes.io/proxy-body-size: 2048m
+#    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+#    nginx.ingress.kubernetes.io/proxy-connect-timeout: "3600"
+#    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+#    nginx.ingress.kubernetes.io/session-cookie-name: influxdb-ingress-nginx
+#    nginx.ingress.kubernetes.io/session-cookie-path: /
+#    nginx.ingress.kubernetes.io/session-cookie-samesite: Lax
+#  path: /
+
+setDefaultUser:
+  enabled: true
+  user:
+    username: "admin"
+    password: "Password123"

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jmeter-cm
+  labels:
+    app: jmeter
+data:
+  load_test: |
+    #!/bin/bash
+    #Script should be run like: ./load_test "path to the test script in jmx format"
+    /jmeter/apache-jmeter-*/bin/jmeter -n $@
