@@ -6,7 +6,7 @@ while getopts "t:J:h" arg;
 do	case "$arg" in
 	t)	testfile="$OPTARG";;
 	J)	echo "reading Jproperties"
-	?/h)	echo "Usage: $0 [-t <path to jmeter script>] [-J<property> ...]"
+	?|h)	echo "Usage: $0 [-t <path to jmeter script>] [-J<property> ...]"
 		exit 1;;
 	esac
 done
