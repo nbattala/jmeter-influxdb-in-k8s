@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: jmeter
-        image: nbattala/jmeter:latest
+        image: nbattala/jmeter:5.5
         imagePullPolicy: IfNotPresent
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]

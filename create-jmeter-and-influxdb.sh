@@ -18,7 +18,7 @@ echo "Creating Influxdb and the service"
 helm repo add influxdata https://helm.influxdata.com/
 helm upgrade -n $namespace --install influxdb-rel \
   -f influxdb-helm-values.yaml \
-  influxdata/influxdb 
+  influxdata/influxdb:2.7.0 
 
 #create a influxdb database
 kubectl -n $namespace exec -it influxdb-rel-0 -- influx -execute 'CREATE DATABASE jmeter'
