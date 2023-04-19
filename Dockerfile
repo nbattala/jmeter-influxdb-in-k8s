@@ -26,6 +26,8 @@ RUN cd /jmeter/apache-jmeter-$JMETER_VERSION/ && wget -q -O /tmp/jpgc-casutg-2.1
 
 RUN cd /jmeter/apache-jmeter-$JMETER_VERSION/ && wget -q -O /tmp/jpgc-tst-2.5.zip https://jmeter-plugins.org/files/packages/jpgc-tst-2.5.zip && unzip -n /tmp/jpgc-tst-2.5.zip && rm /tmp/jpgc-tst-2.5.zip
 
+RUN cd /jmeter/apache-jmeter-$JMETER_VERSION/ && wget -q -O /tmp/jmeter-prometheus-0.6.0.zip https://jmeter-plugins.org/files/packages/jmeter-prometheus-0.6.0.zip && unzip -n /tmp/jmeter-prometheus-0.6.0.zip && rm /tmp/jmeter-prometheus-0.6.0.zip
+
 ENV JMETER_HOME /jmeter/apache-jmeter-$JMETER_VERSION/
 		
 ENV PATH $JMETER_HOME/bin:$PATH
