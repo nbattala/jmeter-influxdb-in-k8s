@@ -2,7 +2,7 @@
 
 jmeter_ns=$(kubectl get pods -A -l app=jmeter -o=jsonpath='{.items[].metadata.namespace}')
 
-while getopts "t" arg;
+while getopts "t:" arg;
 do	case "$arg" in
 	t)	testfile="$OPTARG";;
 	[?])	echo "Usage: $0 [-t <path to jmeter script>] [-<other jmeter test options>]"
