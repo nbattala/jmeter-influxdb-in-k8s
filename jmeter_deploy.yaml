@@ -30,4 +30,4 @@ spec:
       volumes:
       - name: loadtest 
         configMap:
-         name: jmeter-load-test
+         name: jmeter-cm

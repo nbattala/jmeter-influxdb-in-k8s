@@ -2,18 +2,16 @@
 
 jmeter_ns=$(kubectl get pods -A -l app=jmeter -o=jsonpath='{.items[].metadata.namespace}')
 
-while getopts "t:J:h" opt;
-do	case "$opt" in
-	t)	
-		testfile="$OPTARG"
-		;;
-	J)
-		echo "reading Jproperties"
-		;;
+while getopts "t:J:h" arg;
+do	case "$arg" in
+	t)	testfile="$OPTARG";;
+	J)	echo "reading Jproperties";;
 	?|h)	echo "Usage: $0 [-t <path to jmeter script>] [-J<property> ...]"
 		exit 1;;
 	esac
 done
+
+shift $((OPTIND-1))
 
 if [ ! -f "$testfile" ]
 then
@@ -30,5 +28,5 @@ kubectl cp "$jmx" -n ${jmeter_ns} "${jmeter_pod}:/${test_name}
 
 echo "starting jmeter load test"
 
-kubectl exec -it -n ${jmeter_ns} ${jmeter_pod} -- /bin/bash /load_test $@
+kubectl exec -it -n ${jmeter_ns} ${jmeter_pod} -- /bin/bash /load_test "$@"
 

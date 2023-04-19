@@ -7,5 +7,5 @@ metadata:
 data:
   load_test: |
     #!/bin/bash
-    #Script should be run like: ./load_test "path to the test script in jmx format"
+    #Script should be run like: ./load_test -t "path to the test script in jmx format" "-J<property"..
     /jmeter/apache-jmeter-*/bin/jmeter -n $@
