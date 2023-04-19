@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: jmeter
   labels:
+    #do not change this label as it is used in load_test.sh to find namespace of jmeter pod
     app: jmeter
 spec:
   replicas: 1
