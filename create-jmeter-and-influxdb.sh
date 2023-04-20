@@ -22,7 +22,7 @@ helm upgrade -n $namespace --install influxdb-rel \
 
 #create a influxdb database
 #wait a few seconds for the influxdb to be available
-if [ $(kubectl -n $namespace wait pods -l app.kubernetes.io/name=influxdb --for condition=ready --timeout=60s) -eq 0 ]
+if kubectl -n $namespace wait pods -l app.kubernetes.io/name=influxdb --for condition=ready --timeout=60s
 then
 	echo "creating jmeter database in influxdb-rel-0"
 	kubectl -n $namespace exec -it influxdb-rel-0 -- influx -execute 'CREATE DATABASE jmeter'
