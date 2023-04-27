@@ -32,4 +32,4 @@ ENV JMETER_HOME /jmeter/apache-jmeter-$JMETER_VERSION/
 		
 ENV PATH $JMETER_HOME/bin:$PATH
 
-CMD ["tail" "-f" "/dev/null"]
+CMD ["tail", "-f", "/dev/null"]
