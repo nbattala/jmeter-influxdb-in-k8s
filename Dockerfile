@@ -31,3 +31,5 @@ RUN cd /jmeter/apache-jmeter-$JMETER_VERSION/ && wget -q -O /tmp/jmeter-promethe
 ENV JMETER_HOME /jmeter/apache-jmeter-$JMETER_VERSION/
 		
 ENV PATH $JMETER_HOME/bin:$PATH
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]
