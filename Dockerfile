@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-slim
-MAINTAINER nbattala
+MAINTAINER naveen battala<nbattala@gmail.com>
 		
 ARG JMETER_VERSION=5.5
 		
@@ -31,5 +31,3 @@ RUN cd /jmeter/apache-jmeter-$JMETER_VERSION/ && wget -q -O /tmp/jmeter-promethe
 ENV JMETER_HOME /jmeter/apache-jmeter-$JMETER_VERSION/
 		
 ENV PATH $JMETER_HOME/bin:$PATH
-
-CMD ["tail", "-f", "/dev/null"]
