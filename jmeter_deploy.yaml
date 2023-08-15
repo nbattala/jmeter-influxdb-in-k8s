@@ -6,21 +6,6 @@ metadata:
     #do not change this label as it is used in load_test.sh to find namespace of jmeter pod
     app: jmeter
 spec:
-  tolerations:
-  - effect: NoSchedule
-    key: workload/class
-    operator: Equal
-    value: loadtest
-  affinity:
-    nodeAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        preference:
-          matchExpressions:
-          - key: workload/class
-            operator: In
-            values:
-              - loadtest
   replicas: 1
   selector:
     matchLabels:
@@ -30,6 +15,21 @@ spec:
       labels:
         app: jmeter
     spec:
+      tolerations:
+      - effect: NoSchedule
+        key: workload/class
+        operator: Equal
+        value: loadtest
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            preference:
+              matchExpressions:
+              - key: workload/class
+                operator: In
+                values:
+                  - loadtest
       containers:
       - name: jmeter
         image: nbattala/jmeter:5.5
