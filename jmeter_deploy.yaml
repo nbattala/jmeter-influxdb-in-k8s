@@ -33,7 +33,7 @@ spec:
       containers:
       - name: jmeter
         image: nbattala/jmeter:5.5
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         command: [ "/bin/bash", "-c", "--" ]
         args: [ "while true; do sleep 30; done;" ]
         volumeMounts:
