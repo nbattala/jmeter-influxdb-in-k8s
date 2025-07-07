@@ -29,7 +29,8 @@ testName=$(basename "$testFile")
 jmeter_pod=$(kubectl get po -n ${jmeter_ns} -l app=jmeter -o=jsonpath='{.items[].metadata.name}')
 
 #copy the script to jmeter pod
-kubectl cp "$testFile" -n ${jmeter_ns} "${jmeter_pod}:/${testName}"
+#kubectl cp "$testFile" -n ${jmeter_ns} "${jmeter_pod}:/${testName}"
+tar cf - "$testFile" | kubectl -n "${jmeter_ns}" exec -i "${jmeter_pod}" -- tar xf - -C /
 
 echo "starting jmeter load test"
 
